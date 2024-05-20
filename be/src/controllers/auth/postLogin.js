@@ -23,6 +23,11 @@ export async function postLogin(req, res) {
           expiresIn: '8h',
         }
       );
+
+      return res.status(200).json({
+        messageKier: 'User logged in',
+        userDetails: { email: user.email, username: user.username, token },
+      });
       //send successful response back to client with registered user and JWT
     }
 

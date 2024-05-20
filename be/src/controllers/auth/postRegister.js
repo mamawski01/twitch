@@ -14,7 +14,7 @@ export async function postRegister(req, res) {
     const encryptedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({
       username,
-      email: email.toLowerCase(),
+      email,
       password: encryptedPassword,
     });
     console.log(user); //able to get the user details
@@ -23,7 +23,7 @@ export async function postRegister(req, res) {
       //user details
       {
         userId: user._id,
-        email,
+        email: user.email,
       },
       //secret key
       process.env.TOKEN_KEY,
@@ -35,9 +35,9 @@ export async function postRegister(req, res) {
 
     //send successful response back to client with registered user and JWT
     return res.status(201).json({
-      message: 'User save to db',
+      messageKier: 'User save to db',
       userDetails: {
-        email,
+        email: user.email,
         username,
         token,
       },
