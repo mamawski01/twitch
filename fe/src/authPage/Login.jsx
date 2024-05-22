@@ -71,7 +71,8 @@ export function Login({ switchAuthHandler }) {
       console.log(error.message);
     }
   }
-
+  const isSubmitButtonDisabled =
+    isLoading || !formState.password.isValid || !formState.email.isValid;
   return (
     <div className="login-container">
       <Logo text="Login to Clone" />
@@ -96,7 +97,7 @@ export function Login({ switchAuthHandler }) {
           showErrorMessage={formState.password.showError}
           validationMessage={passwordValidationMessage}
         ></AuthInput>
-        <button onClick={handleLogin} disabled={isLoading}>
+        <button onClick={handleLogin} disabled={isSubmitButtonDisabled}>
           Log in
         </button>
       </form>

@@ -90,7 +90,12 @@ export function Register({ switchAuthHandler }) {
       console.log(error.message);
     }
   }
-  console.log(formState);
+  const isSubmitButtonDisabled =
+    !formState.password.isValid ||
+    !formState.email.isValid ||
+    !formState.username.isValid ||
+    formState.password.value !== formState.passwordConf.value ||
+    isLoading;
   return (
     <div className="register-container">
       <Logo text="Sign up to Clone" />
@@ -104,7 +109,7 @@ export function Register({ switchAuthHandler }) {
           onBlurHandler={handleInputValidationOnBlur}
           showErrorMessage={formState.email.showError}
           validationMessage={emailValidationMessage}
-        ></AuthInput>
+        />
         <AuthInput
           field="username"
           label="Username"
@@ -114,7 +119,7 @@ export function Register({ switchAuthHandler }) {
           onBlurHandler={handleInputValidationOnBlur}
           showErrorMessage={formState.username.showError}
           validationMessage={usernameValidationMessage}
-        ></AuthInput>
+        />
         <AuthInput
           field="password"
           label="Password"
@@ -124,18 +129,18 @@ export function Register({ switchAuthHandler }) {
           onBlurHandler={handleInputValidationOnBlur}
           showErrorMessage={formState.password.showError}
           validationMessage={passwordValidationMessage}
-        ></AuthInput>
+        />
         <AuthInput
           field="passwordConf"
-          label="password"
+          label="Password confirmation"
           value={formState.passwordConf.value}
           onChangeHandler={handleInputValueChange}
           type="password"
           onBlurHandler={handleInputValidationOnBlur}
           showErrorMessage={formState.passwordConf.showError}
           validationMessage={passwordConfValidationMessage}
-        ></AuthInput>
-        <button onClick={handleRegister} disabled={isLoading}>
+        />
+        <button onClick={handleRegister} disabled={isSubmitButtonDisabled}>
           Register
         </button>
       </form>
