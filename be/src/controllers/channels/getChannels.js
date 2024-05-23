@@ -24,6 +24,6 @@ export async function getChannels(req, res) {
     return res.json({ channels });
   } catch (error) {
     console.log(error);
-    return res.status(500).message('Something went wrong');
+    return res.status(500).send('Something went wrong');
   }
 }

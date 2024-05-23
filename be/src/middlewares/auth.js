@@ -9,8 +9,6 @@ export function verifyToken(req, res, next) {
     return res.status(401).send('A token is required for authentication');
   }
 
-  const tokenFromUser = 'Bearer retfdjhoijlganioerhg';
-
   try {
     token = token.replace(/^Bearer\s+/, '');
     const decoded = jwt.verify(token, config.TOKEN_KEY);

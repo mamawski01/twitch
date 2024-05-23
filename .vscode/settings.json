@@ -3,5 +3,7 @@
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
-  "cSpell.autoFormatConfigFile": true
+  "cSpell.autoFormatConfigFile": true,
+  "editor.foldingImportsByDefault": false,
+  "autoimport.filesToScan": "**/*.{ts,tsx,js,jsx}"
 }
