@@ -10,8 +10,9 @@ export async function getChannels(req, res) {
       }
     ).populate('channel');
 
-    const channels = users.filter((user) =>
-      user.channel.isActive.map((user) => {
+    const channels = users
+      .filter((user) => user.channel.isActive)
+      .map((user) => {
         return {
           id: user.channel._id,
           title: user.channel.title,
@@ -19,9 +20,8 @@ export async function getChannels(req, res) {
           username: user.username,
           isOnline: false,
         };
-      })
-    );
-    return res.json({});
+      });
+    return res.json({ channels });
   } catch (error) {
     console.log(error);
     return res.status(500).message('Something went wrong');
