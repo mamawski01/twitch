@@ -1,26 +1,26 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-import Logo from './Logo';
-import AuthInput from './AuthInput';
+import Logo from './Logo.jsx';
 import {
   emailValidationMessage,
   validateEmail,
-} from '../shared/validators/validateEmail';
+} from '../shared/validators/validateEmail.js';
 
 import {
   passwordValidationMessage,
   validatePassword,
-} from '../shared/validators/validatePassword';
+} from '../shared/validators/validatePassword.js';
 import {
   usernameValidationMessage,
   validateUsername,
-} from '../shared/validators/validateUsername';
+} from '../shared/validators/validateUsername.js';
 import {
   passwordConfValidationMessage,
   validatePasswordConfig,
-} from '../shared/validators/validatePasswordConf';
-import { useRegister } from '../shared/hooks/userRegister';
+} from '../shared/validators/validatePasswordConf.js';
+import { useRegister } from '../shared/hooks/userRegister.js';
+import Input from '../shared/components/Input.jsx';
 
 export function Register({ switchAuthHandler }) {
   const { isLoading, register } = useRegister();
@@ -100,7 +100,7 @@ export function Register({ switchAuthHandler }) {
     <div className="register-container">
       <Logo text="Sign up to Clone" />
       <form action="" className="auth-form">
-        <AuthInput
+        <Input
           field="email"
           label="Email"
           value={formState.email.value}
@@ -110,7 +110,7 @@ export function Register({ switchAuthHandler }) {
           showErrorMessage={formState.email.showError}
           validationMessage={emailValidationMessage}
         />
-        <AuthInput
+        <Input
           field="username"
           label="Username"
           value={formState.username.value}
@@ -120,7 +120,7 @@ export function Register({ switchAuthHandler }) {
           showErrorMessage={formState.username.showError}
           validationMessage={usernameValidationMessage}
         />
-        <AuthInput
+        <Input
           field="password"
           label="Password"
           value={formState.password.value}
@@ -130,7 +130,7 @@ export function Register({ switchAuthHandler }) {
           showErrorMessage={formState.password.showError}
           validationMessage={passwordValidationMessage}
         />
-        <AuthInput
+        <Input
           field="passwordConf"
           label="Password confirmation"
           value={formState.passwordConf.value}

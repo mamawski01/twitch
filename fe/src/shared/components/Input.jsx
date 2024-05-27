@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-export default function AuthInput({
+export default function Input({
   field,
   label,
   value,
@@ -42,7 +42,7 @@ export default function AuthInput({
   );
 }
 
-AuthInput.propTypes = {
+Input.propTypes = {
   field: PropTypes.any,
   label: PropTypes.any,
   onBlurHandler: PropTypes.any,

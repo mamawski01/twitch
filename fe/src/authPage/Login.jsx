@@ -2,17 +2,17 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 import Logo from './Logo';
-import AuthInput from './AuthInput';
 import {
   emailValidationMessage,
   validateEmail,
-} from '../shared/validators/validateEmail';
+} from '../shared/validators/validateEmail.js';
 
 import {
   passwordValidationMessage,
   validatePassword,
-} from '../shared/validators/validatePassword';
-import { useLogin } from '../shared/hooks/useLogin';
+} from '../shared/validators/validatePassword.js';
+import { useLogin } from '../shared/hooks/useLogin.js';
+import Input from '../shared/components/Input.jsx';
 
 export function Login({ switchAuthHandler }) {
   const { login, isLoading } = useLogin();
@@ -77,7 +77,7 @@ export function Login({ switchAuthHandler }) {
     <div className="login-container">
       <Logo text="Login to Clone" />
       <form action="" className="auth-form">
-        <AuthInput
+        <Input
           field="email"
           label="Email"
           value={formState.email.value}
@@ -86,8 +86,8 @@ export function Login({ switchAuthHandler }) {
           onBlurHandler={handleInputValidationOnBlur}
           showErrorMessage={formState.email.showError}
           validationMessage={emailValidationMessage}
-        ></AuthInput>
-        <AuthInput
+        ></Input>
+        <Input
           field="password"
           label="Password"
           value={formState.password.value}
@@ -96,7 +96,7 @@ export function Login({ switchAuthHandler }) {
           onBlurHandler={handleInputValidationOnBlur}
           showErrorMessage={formState.password.showError}
           validationMessage={passwordValidationMessage}
-        ></AuthInput>
+        ></Input>
         <button onClick={handleLogin} disabled={isSubmitButtonDisabled}>
           Log in
         </button>

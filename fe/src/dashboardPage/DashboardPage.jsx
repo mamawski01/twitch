@@ -1,4 +1,4 @@
-import Content from './Content.jsx';
+import Content from './content/Content.jsx';
 import Nav from './nav/Nav.jsx';
 import Sidebar from './sidebar/Sidebar.jsx';
 
