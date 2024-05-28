@@ -26,7 +26,7 @@ export function useLogin() {
     console.log(userDetails);
 
     localStorage.setItem('user', JSON.stringify(userDetails));
-    navigate('/');
+    navigate('/channels');
   }
   return { login, isLoading };
 }

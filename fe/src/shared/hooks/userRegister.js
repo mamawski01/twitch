@@ -24,7 +24,7 @@ export function useRegister() {
     const { userDetails } = res.data;
 
     localStorage.setItem('user', JSON.stringify(userDetails));
-    navigate('/');
+    navigate('/channels');
   }
   return { register, isLoading };
 }

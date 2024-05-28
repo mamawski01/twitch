@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 
-export default function ChannelCard(
-  { channel: { avatarUrl, title, username, isOnline } },
+export default function ChannelCard({
+  channel: { avatarUrl, title, username, isOnline, id },
   navigateToChannelHandler,
-) {
+}) {
   function handleNavigate() {
     try {
-      navigateToChannelHandler();
+      navigateToChannelHandler(id);
     } catch (error) {
       console.log(error.message);
     }
@@ -29,6 +29,7 @@ export default function ChannelCard(
 }
 ChannelCard.propTypes = {
   channel: PropTypes.any,
+  navigateToChannelHandler: PropTypes.func,
 };
 
 const imageUrl =

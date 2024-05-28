@@ -1,23 +1,8 @@
 import PropTypes from 'prop-types';
-const followedChannels = [
-  {
-    id: 1,
-    username: 'Martin',
-    isOnline: false,
-  },
-  {
-    id: 2,
-    username: 'John',
-    isOnline: true,
-  },
-  {
-    id: 3,
-    username: 'Jane',
-    isOnline: false,
-  },
-];
 
-export default function Sidebar({ channels = followedChannels }) {
+export default function Sidebar({ channels }) {
+  if (!channels) return null;
+
   return (
     <div className=" sidebar-container">
       <span className="sidebar-title">For you</span>

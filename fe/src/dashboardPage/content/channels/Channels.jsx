@@ -1,44 +1,21 @@
 import PropTypes from 'prop-types';
-import ChannelCard from './ChannelCard';
-export const dummyChannels = [
-  {
-    id: 1,
-    title: 'Channel 1',
-    avatarUrl: null,
-    username: 'Martin',
-    isOnline: false,
-  },
-  {
-    id: 2,
-    title: 'Channel 2',
-    avatarUrl: null,
-    username: 'John',
-    isOnline: true,
-  },
-  {
-    id: 3,
-    title: 'Channel 3',
-    avatarUrl: null,
-    username: 'Jane',
-    isOnline: false,
-  },
-  {
-    id: 4,
-    title: 'Channel 4',
-    avatarUrl: null,
-    username: 'Jack',
-    isOnline: false,
-  },
-];
+import { useNavigate } from 'react-router-dom';
 
-export default function Channels({ channels = dummyChannels }) {
+import ChannelCard from './ChannelCard.jsx';
+
+export default function Channels({ channels }) {
+  const navigate = useNavigate();
+
+  function handleNavigateToChannel(id) {
+    navigate(`/channel/${id}`);
+  }
   return (
     <div className="channels-container">
       {channels.map((channel) => (
         <ChannelCard
           key={channel.id}
           channel={channel}
-          navigateToChannelHandler={() => {}}
+          navigateToChannelHandler={handleNavigateToChannel}
         ></ChannelCard>
       ))}
     </div>

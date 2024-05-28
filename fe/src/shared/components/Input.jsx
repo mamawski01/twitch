@@ -8,6 +8,7 @@ export default function Input({
   showErrorMessage,
   validationMessage,
   onBlurHandler,
+  textarea,
 }) {
   const handleValueChange = (e) => {
     try {
@@ -29,12 +30,23 @@ export default function Input({
       <div className="auth-form-label">
         <span>{label}</span>
       </div>
-      <input
-        type={type}
-        value={value}
-        onChange={handleValueChange}
-        onBlur={handleInputBlur}
-      />
+      {textarea ? (
+        <textarea
+          type={type}
+          value={value}
+          onChange={handleValueChange}
+          onBlur={handleInputBlur}
+          rows={5}
+          style={{ maxWidth: '400px' }}
+        ></textarea>
+      ) : (
+        <input
+          type={type}
+          value={value}
+          onChange={handleValueChange}
+          onBlur={handleInputBlur}
+        />
+      )}
       <span className="auth-form-validation-message">
         {showErrorMessage && validationMessage}
       </span>
@@ -45,9 +57,10 @@ export default function Input({
 Input.propTypes = {
   field: PropTypes.any,
   label: PropTypes.any,
-  onBlurHandler: PropTypes.any,
-  onChangeHandler: PropTypes.any,
+  onBlurHandler: PropTypes.func,
+  onChangeHandler: PropTypes.func,
   showErrorMessage: PropTypes.any,
+  textarea: PropTypes.any,
   type: PropTypes.any,
   validationMessage: PropTypes.any,
   value: PropTypes.any,
