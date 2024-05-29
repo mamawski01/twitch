@@ -5,7 +5,7 @@ import Channels from './channels/Channels.jsx';
 import ChannelView from './channelView/ChannelView.jsx';
 import Settings from './settings/Settings.jsx';
 
-export default function Content({ channels }) {
+export default function Content({ channels, getChannels }) {
   return (
     <div className="content-container">
       <Routes>
@@ -14,7 +14,10 @@ export default function Content({ channels }) {
           path="channels"
           element={<Channels channels={channels}></Channels>}
         ></Route>
-        <Route path="channel/:id" element={<ChannelView></ChannelView>}></Route>
+        <Route
+          path="channel/:id"
+          element={<ChannelView getChannels={getChannels}> </ChannelView>}
+        ></Route>
       </Routes>
     </div>
   );
@@ -22,6 +25,7 @@ export default function Content({ channels }) {
 
 Content.propTypes = {
   channels: PropTypes.any,
+  getChannels: PropTypes.any,
 };
 Channels.propTypes = {
   channels: PropTypes.any,

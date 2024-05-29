@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useChannels } from '../shared/hooks/useChannels.js';
 import { useEffect } from 'react';
 
@@ -25,7 +26,11 @@ export function DashboardPage() {
     <div className="dashboard-container">
       <Nav></Nav>
       <Sidebar channels={followedChannels}></Sidebar>
-      <Content channels={allChannels}></Content>
+      <Content channels={allChannels} getChannels={getChannels}></Content>
     </div>
   );
 }
+
+Sidebar.propTypes = {
+  channels: PropTypes.any,
+};

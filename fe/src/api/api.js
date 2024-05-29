@@ -84,3 +84,13 @@ export async function getChannelDetails(channelId) {
     return { error: true, exception };
   }
 }
+
+export async function followChannel(channelId) {
+  try {
+    return await apiClient.post('/channels/follow/', {
+      channelId,
+    });
+  } catch (exception) {
+    return { error: true, exception };
+  }
+}

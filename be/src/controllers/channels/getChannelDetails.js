@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import User from '../../models/User.js';
 import Channel from '../../models/Channel.js';
 
@@ -13,9 +15,24 @@ export async function getChannelDetails(req, res) {
     const user = await User.findOne({ channel: channelId }, { username: 1 });
     console.log(user);
 
-    const streamUrl = 'http';
+    const streamUrl = `http://localhost:8000/live/${channel.streamKey}.flv`;
 
-    const isOnline = false;
+    const requestData = await axios.get('http://localhost:8000/api/streams');
+
+    const activeStreams = requestData.data;
+
+    let liveStreams = [];
+
+    for (const streamId in activeStreams?.live) {
+      if (
+        activeStreams.live[streamId].publisher &&
+        activeStreams.live[streamId].publisher !== null
+      ) {
+        liveStreams.push(streamId);
+      }
+    }
+
+    const isOnline = liveStreams.includes(channel.streamKey);
 
     return res.status(200).json({
       id: channel._id,
@@ -27,6 +44,6 @@ export async function getChannelDetails(req, res) {
     });
   } catch (error) {
     console.log(error);
-    return res.status(500).send('Something went wrong');
+    return res.status(500).send('Channel not found. Please check your url.');
   }
 }

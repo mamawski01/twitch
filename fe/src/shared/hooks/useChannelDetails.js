@@ -1,12 +1,12 @@
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 import { getChannelDetails as getChannelDetailsRequest } from '../../api/api';
-import toast from 'react-hot-toast';
 
 export function useChannelDetails() {
   const [channelDetails, channelDetailsSet] = useState(null);
-  async function getChannelDetails() {
-    const responseData = await getChannelDetailsRequest();
+  async function getChannelDetails(id) {
+    const responseData = await getChannelDetailsRequest(id);
 
     if (responseData.error) {
       return toast.error(
@@ -19,5 +19,6 @@ export function useChannelDetails() {
   return {
     channelDetails,
     isFetching: !channelDetails,
+    getChannelDetails,
   };
 }

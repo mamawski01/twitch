@@ -36,9 +36,8 @@ export function useChannels() {
 
     channelsSet({
       channels: channelsData.data.channels,
-      followedChannels: followedChannelsData.data.followedChannelsData?.filter(
-        (channel) =>
-          followedChannelsData.data.followedChannels.includes(channel.id),
+      followedChannels: channelsData.data.channels.filter((channel) =>
+        followedChannelsData.data.followedChannels.includes(channel.id),
       ),
     });
   }
