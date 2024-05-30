@@ -52,7 +52,7 @@ export default function ChannelView({ getChannels }) {
           getChannels={getChannels}
         ></ChannelDescription>
       </div>
-      <Chat></Chat>
+      <Chat channelId={channelDetails.id}></Chat>
     </div>
   );
 }

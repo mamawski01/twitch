@@ -8,6 +8,7 @@ import Sidebar from './sidebar/Sidebar.jsx';
 import './dashboardPage.css';
 import useUserDetails from '../shared/hooks/useUserDetails.js';
 import LoadingSpinner from '../shared/components/LoadingSpinner.jsx';
+import { connectWithSocketServer } from '../socketConn/socketConn.js';
 
 export function DashboardPage() {
   const { getChannels, isFetching, allChannels, followedChannels } =
@@ -16,6 +17,7 @@ export function DashboardPage() {
 
   useEffect(() => {
     getChannels(isLogged);
+    connectWithSocketServer();
     //cleaning
     return () => {};
   }, []);

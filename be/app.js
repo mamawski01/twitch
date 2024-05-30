@@ -7,6 +7,11 @@ import mongoose from 'mongoose';
 import authRoutes from './src/routes/authRoutes.js'; // gina rename ang file
 import channelsRoutes from './src/routes/channelsRoutes.js';
 import settingsRoutes from './src/routes/settingsRoutes.js';
+import { registerSocketServer } from './src/io/io.js';
+
+import User from './src/models/User.js';
+import Channel from './src/models/Channel.js';
+import Message from './src/models/Message.js';
 
 dotenv.config();
 const PORT = process.env.PORT || process.env.API_PORT;
@@ -14,6 +19,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 const server = http.createServer(app);
+
+registerSocketServer(server);
 
 mongoose
   .connect(process.env.MONGO_URI)
