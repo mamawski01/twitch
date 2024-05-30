@@ -1,5 +1,6 @@
 import io from 'socket.io-client';
-// import { useStore } from '../../../be/src/store/store.js';
+
+import { useStore } from '../store/store.js';
 
 let socket;
 
@@ -12,16 +13,26 @@ export function connectWithSocketServer() {
   });
 
   socket.on('chat-history', (chatHistory) => {
-    // const { setChatHistory } = useStore();
-    console.log(setChatHistory);
+    const { setChatHistory } = useStore.getState();
 
-    console.log(chatHistory);
-    console.log('chat history received from server');
+    setChatHistory(chatHistory);
   });
 
   socket.on('chat-message', (chatMessage) => {
+    const { chatHistory, setChatHistory } = useStore.getState();
+
     console.log(chatMessage);
-    console.log('new message received from server');
+
+    setChatHistory({
+      channelId: chatHistory.channelId,
+      messages: [
+        ...chatHistory.messages,
+        {
+          author: chatMessage.author,
+          content: chatMessage.content,
+        },
+      ],
+    });
   });
 }
 

@@ -6,8 +6,11 @@ import {
   sendChatMessage,
 } from '../../socketConn/socketConn.js';
 import useUserDetails from './useUserDetails.js';
+import { useStore } from '../../store/store.js';
 
 export default function useChatHistory(channelId) {
+  const { chatHistory } = useStore();
+
   const { isLogged, username } = useUserDetails();
 
   useEffect(() => {
@@ -24,7 +27,7 @@ export default function useChatHistory(channelId) {
     });
   }
   return {
-    messages: [],
+    messages: chatHistory?.channelId === channelId ? chatHistory.messages : [],
     sendMessage,
   };
 }
