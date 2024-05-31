@@ -15,13 +15,13 @@ export async function postRegister(req, res) {
 
     const encryptedPassword = await bcrypt.hash(password, 10);
 
-    const newChannel = await Channel.create({});
+    const newChannel = await Channel.create({}); //create new channel
 
     const user = await User.create({
       username,
       email,
       password: encryptedPassword,
-      channel: newChannel._id,
+      channel: newChannel._id, //create new channel
     });
     console.log(user); //able to get the user details
     //create JWT token

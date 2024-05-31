@@ -5,7 +5,7 @@ const userSchema = new Schema({
   email: { type: String, unique: true },
   username: { type: String },
   password: { type: String },
-  channel: { type: Schema.Types.ObjectId, ref: 'Channel' },
+  channel: { type: Schema.Types.ObjectId, ref: 'Channel' }, //create new channel
   followedChannels: { type: [{ type: Schema.Types.ObjectId, ref: 'Channel' }] },
 });
 
